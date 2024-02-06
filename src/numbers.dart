@@ -1,5 +1,7 @@
 
 
+import 'dart:ffi';
+
 abstract class Number {
 
   Number add(Number other);
@@ -78,8 +80,20 @@ class Integer extends Number {
 
   @override
   Number divide(Number other) {
-    // TODO: implement divide
-    throw UnimplementedError();
+    switch (other.runtimeType) {
+      case Integer:
+        (other as Integer);
+        double newValue = (this.value.roundToDouble()) / (other.value.roundToDouble());
+        return (newValue % 1 == 0) ? Integer(newValue.round()) : RealNumber(newValue);
+      case Fraction:
+        (other as Fraction);
+        return Fraction(this, Integer(1)).divide(other);
+      case RealNumber:
+        (other as RealNumber);
+        return RealNumber(this.value.roundToDouble()).divide(other);
+      default:
+        return Nil();
+    }
   }
 
   @override
@@ -133,9 +147,22 @@ class Fraction extends Number {
 
   @override
   Number divide(Number other) {
-    // TODO: implement divide
-    throw UnimplementedError();
+    switch (other.runtimeType) {
+      case Integer:
+        (other as Integer);
+        return Fraction(this.numerator, this.denominator.mult(other));
+      case Fraction:
+        (other as Fraction);
+        return this.mult(other.inverse());
+      case RealNumber:
+        (other as RealNumber);
+        return Fraction(this.numerator, this.denominator.mult(other));
+      default:
+        return Nil();
+    }
   }
+
+  Fraction inverse() => Fraction(denominator, numerator);
 
   @override
   double n() => numerator.divide(denominator).n();
@@ -181,7 +208,8 @@ class RealNumber extends Number {
         return other.mult(this);
       case RealNumber:
         (other as RealNumber);
-        return RealNumber(this.value * other.value);
+        double newValue = this.value * other.value;
+        return (newValue % 1 == 0) ? Integer(newValue.round()) : RealNumber(newValue);
       default:
         return Nil();
     }
@@ -189,8 +217,21 @@ class RealNumber extends Number {
 
   @override
   Number divide(Number other) {
-    // TODO: implement divide
-    throw UnimplementedError();
+    switch (other.runtimeType) {
+      case Integer:
+        (other as Integer);
+        double newValue = this.value / (other.value.roundToDouble());
+        return (newValue % 1 == 0) ? Integer(newValue.round()) : RealNumber(newValue);
+      case Fraction:
+        (other as Fraction);
+        return Fraction(this, Integer(1)).divide(other);
+      case RealNumber:
+        (other as RealNumber);
+        double newValue = this.value / other.value;
+        return (newValue % 1 == 0) ? Integer(newValue.round()) : RealNumber(newValue);
+      default:
+        return Nil();
+    }
   }
 
   @override

@@ -27,6 +27,9 @@ void main(List<String> arguments) {
   Number intMultInt = four.mult(five);
   Number intMultFrac = four.mult(sixOverSeven);
   Number intMultReal = five.mult(pi);
+  Number intDivInt = seven.divide(five);
+  Number intDivFrac = six.divide(fourOverFive);
+  Number intDivReal = five.divide(zeroPointFive);
 
   print("4 + 5 = $intAddInt");
   print("4 * 5 = $intMultInt");
@@ -34,6 +37,9 @@ void main(List<String> arguments) {
   print("6 + (4/5) = $intAddFrac");
   print("4 * (6/7) = $intMultFrac");
   print("5 * pi = $intMultReal");
+  print("7 / 5 = $intDivInt");
+  print("6 / (4/5) = $intDivFrac");
+  print("5 / 0.5 = $intDivReal");
 
   print("\nFRACTION");
 
@@ -43,6 +49,9 @@ void main(List<String> arguments) {
   Number fracMultInt = sixOverSeven.mult(four);
   Number fracMultFrac = fourOverFive.mult(sixOverSeven);
   Number fracMultReal = sixOverSeven.mult(pi);
+  Number fracDivInt = fourOverFive.divide(seven);
+  Number fracDivFrac = fourOverFive.divide(sixOverSeven);
+  Number fracDivReal = sixOverSeven.divide(onePointTwoTwoTwo);
 
   print("(4/5) + (6/7) = $fracAddFrac");
   print("(4/5) + 6 = $fracAddInt");
@@ -50,6 +59,9 @@ void main(List<String> arguments) {
   print("(6/7) * 4 = $fracMultInt");
   print("(4/5) * (6/7) = $fracMultFrac");
   print("(6/7) * pi = $fracMultReal");
+  print("(4/5) / 7 = $fracDivInt");
+  print("(4/5) / (6/7) = $fracDivFrac");
+  print("(6/7) / 1.222 = $fracDivReal");
 
   print("\nREAL NUMBER");
 
@@ -59,6 +71,9 @@ void main(List<String> arguments) {
   Number realMultInt = zeroPointFive.mult(six);
   Number realMultFrac = zeroPointFive.mult(fourOverFive);
   Number realMultReal = pi.mult(zeroPointFive);
+  Number realDivInt = zeroPointFive.divide(six);
+  Number realDivFrac = pi.divide(sixOverSeven);
+  Number realDivReal = onePointTwoTwoTwo.divide(zeroPointFive);
 
   print("0.5 + 7 = $realAddInt");
   print("pi + (4/5) = $realAddFrac");
@@ -66,5 +81,8 @@ void main(List<String> arguments) {
   print("0.5 * 6 = $realMultInt");
   print("0.5 * (4/5) = $realMultFrac");
   print("pi * 0.5 = $realMultReal");
+  print("0.5 / 6 = $realDivInt");
+  print("pi / (6/8) = $realDivFrac");
+  print("1.222 / 0.5 = $realDivReal");
 
 }
